@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café Elegance | Experiência Premium em Café</title>
+    <style>
+        /* Fontes */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+        
+        /* Reset e estilos globais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            background-color: #f9f5f0;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #8d6852;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #6e5241;
+            transform: translateY(-2px);
+        }
+        
+        /* Header */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            font-size: 28px;
+            margin-left: 10px;
+            color: #6e5241;
+        }
+        
+        .logo span {
+            color: #d4a373;
+        }
+        
+        /* Navegação */
+        nav ul {
+            display: grid;
+            grid-template-columns: repeat(4, auto);
+            justify-content: end;
+            gap: 30px;
+            list-style: none;
+        }
+        
+        nav a {
+            font-weight: 500;
+            color: #333;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: #8d6852;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #8d6852;
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1200/800') center/cover no-repeat;
+            color: white;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+        }
+        
+        .hero h2 {
+            font-size: 60px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        /* Sobre nós */
+        .about {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-size: 38px;
+            margin-bottom: 20px;
+            color: #6e5241;
+        }
+        
+        .about-text p {
+            margin-bottom: 25px;
+            font-size: 16px;
+            color: #666;
+        }
+        
+        /* Menu */
+        .menu {
+            padding: 100px 0;
+            background-color: #f9f5f0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-header h2 {
+            font-size: 38px;
+            color: #6e5241;
+            margin-bottom: 15px;
+        }
+        
+        .section-header p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .menu-item {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .menu-item-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .menu-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .menu-item:hover .menu-item-image img {
+            transform: scale(1.1);
+        }
+        
+        .menu-item-info {
+            padding: 20px;
+        }
+        
+        .menu-item-info h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #6e5241;
+        }
+        
+        .menu-item-info p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .price {
+            font-weight: 600;
+            color: #8d6852;
+            font-size: 18px;
+        }
+        
+        /* Galeria */
+        .gallery {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 250px);
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            overflow: hidden;
+            position: relative;
+            border-radius: 8px;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-item:nth-child(1) {
+            grid-column: 1 / 2;
+            grid-row: 1 / 3;
+        }
+        
+        .gallery-item:nth-child(4) {
+            grid-column: 3 / 4;
+            grid-row: 1 / 3;
+        }
+        
+        /* Contato */
+        .contact {
+            padding: 100px 0;
+            background-color: #f9f5f0;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        
+        .contact-info h3 {
+            font-size: 26px;
+            margin-bottom: 20px;
+            color: #6e5241;
+        }
+        
+        .contact-details {
+            margin-bottom: 30px;
+        }
+        
+        .contact-details p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            color: #666;
+        }
+        
+        .contact-details i {
+            margin-right: 10px;
+            color: #8d6852;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #8d6852;
+            color: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: #6e5241;
+            transform: translateY(-5px);
+        }
+        
+        /* Formulário */
+        .contact-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #6e5241;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Poppins', sans-serif;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #8d6852;
+        }
+        
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #2c2118;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #d4a373;
+        }
+        
+        .footer-col p {
+            margin-bottom: 15px;
+            color: #ccc;
+            font-size: 14px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            font-size: 14px;
+            transition: color 0.3s ease, padding-left 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .about-grid, .contact-grid, .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto;
+            }
+            
+            .gallery-item:nth-child(1), .gallery-item:nth-child(4) {
+                grid-column: auto;
+                grid-row: auto;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo {
+                justify-content: center;
+                margin-bottom: 15px;
+            }
+            
+            nav ul {
+                grid-template-columns: 1fr 1fr;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .hero h2 {
+                font-size: 40px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>Café <span>Elegance</span></h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">Sobre</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Uma experiência única em café</h2>
+                <p>Sabores requintados, ambiente elegante e momentos inesquecíveis</p>
+                <a href="#menu" class="btn">Nosso Menu</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Nós -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2>Nossa História</h2>
+                    <p>Fundado em 2010, o Café Elegance nasceu da paixão por café de qualidade e da busca por oferecer uma experiência gastronômica diferenciada. Selecionamos cuidadosamente os melhores grãos de diversas regiões do mundo para criar bebidas que encantam paladares exigentes.</p>
+                    <p>Nossa filosofia é simples: qualidade sem compromissos. Desde o cultivo até o preparo, cada etapa é tratada com o máximo de respeito e dedicação, resultando em produtos que transmitem nossa paixão pela arte do café.</p>
+                    <a href="#menu" class="btn">Conheça nosso cardápio</a>
+                </div>
+                <div class="about-image">
+                    <img src="/api/placeholder/600/400" alt="Interior da cafeteria Café Elegance" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu -->
+    <section class="menu" id="menu">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nosso Menu</h2>
+                <p>Desfrute de nossas criações exclusivas, preparadas com ingredientes selecionados e técnicas refinadas</p>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="menu-item-image">
+                        <img src="/api/placeholder/400/300" alt="Cappuccino Tradicional" />
+                    </div>
+                    <div class="menu-item-info">
+                        <h3>Cappuccino Tradicional</h3>
+                        <p>Espresso, leite vaporizado e uma delicada camada de espuma de leite.</p>
+                        <div class="price">R$ 18,90</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-image">
+                        <img src="/api/placeholder/400/300" alt="Latte Artístico" />
+                    </div>
+                    <div class="menu-item-info">
+                        <h3>Latte Artístico</h3>
+                        <p>Espresso suave com leite cremoso e desenhos artísticos na superfície.</p>
+                        <div class="price">R$ 21,50</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-image">
+                        <img src="/api/placeholder/400/300" alt="Mocha Premium" />
+                    </div>
+                    <div class="menu-item-info">
+                        <h3>Mocha Premium</h3>
+                        <p>Espresso, chocolate belga e leite vaporizado com leve toque de canela.</p>
+                        <div class="price">R$ 23,90</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-image">
+                        <img src="/api/placeholder/400/300" alt="Croissant Parisiense" />
+                    </div>
+                    <div class="menu-item-info">
+                        <h3>Croissant Parisiense</h3>
+                        <p>Massa folhada crocante por fora e macia por dentro, feita com manteiga francesa.</p>
+                        <div class="price">R$ 16,50</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-image">
+                        <img src="/api/placeholder/400/300" alt="Cheesecake de Frutas Vermelhas" />
+                    </div>
+                    <div class="menu-item-info">
+                        <h3>Cheesecake de Frutas</h3>
+                        <p>Base crocante de biscoito, cream cheese aveludado e calda de frutas vermelhas.</p>
+                        <div class="price">R$ 25,00</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-image">
+                        <img src="/api/placeholder/400/300" alt="Tiramisù Clássico" />
+                    </div>
+                    <div class="menu-item-info">
+                        <h3>Tiramisù Clássico</h3>
+                        <p>Camadas de biscoito champagne embebido em café e creme de mascarpone.</p>
+                        <div class="price">R$ 27,90</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeria -->
+    <section class="gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nossa Atmosfera</h2>
+                <p>Conheça um pouco do ambiente sofisticado e acolhedor que preparamos para você</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="/api/placeholder/600/800" alt="Interior da cafeteria" />
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/400/300" alt="Barista preparando café" />
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/400/300" alt="Mesa com café e doces" />
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/600/800" alt="Vitrine de doces" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Entre em Contato</h2>
+                <p>Estamos ansiosos para atendê-lo e tornar sua experiência ainda mais especial</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Informações</h3>
+                    <div class="contact-details">
+                        <p>Avenida das Araucárias, 1250 - Jardim Botânico</p>
+                        <p>São Paulo, SP - Brasil</p>
+                        <p>Tel: (11) 3456-7890</p>
+                        <p>Email: contato@cafeelegance.com.br</p>
+                        <p>Horário: Segunda a Domingo, 09h às 22h</p>
+                    </div>
+                    <h3>Redes Sociais</h3>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">f</a>
+                        <a href="#" aria-label="Instagram">i</a>
+                        <a href="#" aria-label="Twitter">t</a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Nome</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Assunto</label>
+                            <input type="text" id="subject" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensagem</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Café Elegance</h3>
+                    <p>Desde 2010 oferecendo experiências únicas em café e gastronomia, em um ambiente sofisticado e acolhedor, perfeito para momentos especiais.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Links Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">Sobre</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Horários</h3>
+                    <p>Segunda a Sexta: 09h - 22h</p>
+                    <p>Sábados: 10h - 23h</p>
+                    <p>Domingos: 10h - 20h</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Inscreva-se para receber novidades, promoções e eventos exclusivos.</p>
+                    <form>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Seu e-mail" required>
+                        </div>
+                        <button type="submit" class="btn">Inscrever</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Café Elegance. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
